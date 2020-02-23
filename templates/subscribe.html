@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Subscribe </title>
+    <link rel="stylesheet" type="text/css" href="../static/styles/subscribe.css">
+    <form action="" method="POST" role="form">
+      <body>
+        <h2> Subscribe to receive CO alerts </h2>
+
+
+        <h3>{{ form.firstName.label }}</h3>
+              {{ form.firstName() }}
+
+        <h3>{{ form.lastName.label }}</h3>
+              {{ form.lastName() }}
+
+        <h3>{{ form.emailAddress.label }}</h3>
+              {{ form.emailAddress() }}
+
+        <h3>{{ form.phoneNum.label }}</h3>
+              {{ form.phoneNum() }}
+
+        <br>
+        <br>
+        <input type="submit" class="btn" value="Submit" align="center">
+
+
+
+      </body>
+
+    </form>
+
+  </head>
+
+</html>
