@@ -18,8 +18,10 @@ data = {"timestamp":"02-22-2020 08:38", "CO":"100"}
 
 # format of contactInfo list is a list of dictionaries
 # [{"firstName":"Griffin", "lastName":"Jeanette", "emailAddress": "jeanet_g1@denison.edu",
-#   "phoneNum":"630-362-8142"}]
+#   "phoneNum":"1630-362-8142"}]
 contactInfo = []
+
+threshold = 100
 
 class Data(Resource):
     def get(self, data_id):
@@ -32,11 +34,8 @@ class Data(Resource):
 
         print(reading)
 
-        '''
-        if reading > threshold:
+        if int(reading) > threshold:
             sendAlert(contactInfo)
-
-        '''
 
         return data, 201
 
@@ -44,7 +43,7 @@ class ContactInfoForm(FlaskForm):
     firstName = StringField("First Name", validators=[DataRequired()])
     lastName = StringField("Last Name", validators=[DataRequired()])
     emailAddress = StringField("Email Address", validators=[DataRequired()])
-    phoneNum = StringField("Phone Number (XXX-XXX-XXXX)", validators=[DataRequired()])
+    phoneNum = StringField("Phone Number (XXXX-XXX-XXXX)", validators=[DataRequired()])
     submitField = SubmitField("Submit")
 
 @app.route("/")
