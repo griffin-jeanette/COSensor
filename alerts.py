@@ -20,14 +20,11 @@ def sendText(contactInfo):
 
         message = client.messages \
                         .create(
-                             body="WARNING: Unhealthy levels of Carbon Monoxide have been detected in your area",
+                             body="WARNING: dangerous levels of Carbon Monoxide have been detected",
                              from_='+12058130652',
                              to=phoneNum)
 
     print(message.sid)
-
-def sendEmail():
-    pass
 
 
 def sendAlert(contactInfo):

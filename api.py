@@ -14,7 +14,7 @@ dataParser = reqparse.RequestParser()
 dataParser.add_argument('timestamp')
 dataParser.add_argument('CO')
 
-data = {"timestamp":"02-22-2020 08:38", "CO":"100"}
+data = {"timestamp":"", "CO":""}
 
 # format of contactInfo list is a list of dictionaries
 # [{"firstName":"Griffin", "lastName":"Jeanette", "emailAddress": "jeanet_g1@denison.edu",
@@ -32,9 +32,7 @@ class Data(Resource):
         reading = args[data_id]
         data[data_id] = reading
 
-        print(reading)
-
-        if int(reading) > threshold:
+        if (data_id == "CO") and (int(reading) == 1):
             sendAlert(contactInfo)
 
         return data, 201

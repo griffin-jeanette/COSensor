@@ -1,0 +1,3 @@
+# file for passwords for twilio
+
+passwords = {"twilio":{"account_sid":"ACcbdaddc38005f15c1c0abf4d5cb2eade"}}
