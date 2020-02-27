@@ -21,8 +21,6 @@ data = {"timestamp":"", "CO":""}
 #   "phoneNum":"1630-362-8142"}]
 contactInfo = []
 
-threshold = 100
-
 class Data(Resource):
     def get(self, data_id):
         return data[data_id]
@@ -32,6 +30,7 @@ class Data(Resource):
         reading = args[data_id]
         data[data_id] = reading
 
+        # check whether CO has been detected and send an alert if true
         if (data_id == "CO") and (int(reading) == 1):
             sendAlert(contactInfo)
 
@@ -55,14 +54,13 @@ def displayLevel():
 def contactInfoPage():
     form = ContactInfoForm(request.form)
 
-    print("HEREEE")
-
     if request.method == 'POST':
         firstName = request.form["firstName"]
         lastName = request.form["lastName"]
         emailAddress = request.form["emailAddress"]
         phoneNum = request.form["phoneNum"]
 
+        # create a dictionary to add to contact list
         newEntry = {}
         newEntry["firstName"] = firstName
         newEntry["lastName"] = lastName
@@ -70,10 +68,6 @@ def contactInfoPage():
         newEntry["phoneNum"] = phoneNum
 
         contactInfo.append(newEntry)
-
-        print("name: " + firstName + " " + lastName)
-        print("email: " + emailAddress)
-        print("phoneNum: " + phoneNum)
 
         return redirect(url_for('contactInfoPage'))
 
