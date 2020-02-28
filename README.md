@@ -1,5 +1,14 @@
 # Raspberry Pi Carbon Monoxide Sensor
 
+## Getting Started
+These instructions will allow you to recreate this project on your local machine and raspberry pi
+in order to run the sensor.
+
+### Built With
+  * [Flask](https://flask.palletsprojects.com/en/1.1.x/) - for web development
+  * [Twilio](https://www.twilio.com/) - automated text messages
+  * [Gmail API](https://developers.google.com/gmail/api) - automated emails
+
 ### Installing Packages
 Since you may not already have all the necessary packages installed, we need to install them using pip:
 ```
@@ -56,3 +65,8 @@ On your computer run:
 ```
 python api.py
 ```
+
+
+### Authors
+  * Griffin Jeanette
+  * Pritam Basnet
