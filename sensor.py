@@ -5,7 +5,7 @@ import time
 import spidev
 import sys
 
-IPADDRESS = "140.141.235.1"
+IPADDRESS = ""
 channel = 0
 spi = spidev.SpiDev()
 spi.open(0, 0)
@@ -15,11 +15,6 @@ def readadc(channel):
 		return -1
 	r = spi.xfer2([1, 8 << 4, 0])
 	data = ((r[1] & 3) << 8) + r[2]
-	#resp = spi.readbytes(3)
-	#if (resp[0] != 255):
-	#	print(resp)
-	#value = resp[1] + resp[2]
-	#print(value)
 	return data
 
 try:
