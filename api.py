@@ -17,8 +17,8 @@ dataParser.add_argument('CO')
 data = {"timestamp":"", "CO":""}
 
 # format of contactInfo list is a list of dictionaries
-# [{"firstName":"Griffin", "lastName":"Jeanette", "emailAddress": "jeanet_g1@denison.edu",
-#   "phoneNum":"1630-362-8142"}]
+# [{"firstName":"", "lastName":"", "emailAddress": "",
+#   "phoneNum":""}]
 contactInfo = []
 
 class Data(Resource):

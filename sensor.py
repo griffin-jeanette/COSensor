@@ -2,24 +2,41 @@ from datetime import datetime
 import requests
 import RPi.GPIO as GPIO
 import time
+import spidev
+import sys
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.IN)
-GPIO.setup(27, GPIO.OUT)
+IPADDRESS = "140.141.235.1"
+channel = 0
+spi = spidev.SpiDev()
+spi.open(0, 0)
+
+def readadc(channel):
+	if ((channel > 7) or (channel < 0)):
+		return -1
+	r = spi.xfer2([1, 8 << 4, 0])
+	data = ((r[1] & 3) << 8) + r[2]
+	#resp = spi.readbytes(3)
+	#if (resp[0] != 255):
+	#	print(resp)
+	#value = resp[1] + resp[2]
+	#print(value)
+	return data
 
 try:
 	while True:
-		input = GPIO.input(18)
-		print(input)
-		if input:
+		value = readadc(channel)
+		print("Value: " + str(value))
+
+		if value > 0:
 			print('CO detected')
-			requests.put("http://140.141.208.99:5000/data/CO",{"CP":"1"})
+			requests.put("http://" + IPADDRESS + ":5000/data/CO",{"CO":"1"})
 		else:
 			print('No CO detected')
-			requests.put("http://140.141.208.99:5000/data/CO", {"CO":"0"})
+			requests.put("http://" + IPADDRESS + ":5000/data/CO", {"CO":"0"})
 
-		requests.put("http://140.141.208.99:5000/data/timestamp", {"timestamp":str(datetime.now())})
-		time.sleep(10)
+		requests.put("http://" + IPADDRESS + ":5000/data/timestamp", {"timestamp":str(datetime.now())})
+		time.sleep(1)
 
 except KeyboardInterrupt:
-    GPIO.cleanup()
+	spi.close()
+	sys.exit(0)

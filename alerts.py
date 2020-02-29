@@ -7,7 +7,7 @@ import os, os.path
 from google_auth_oauthlib.flow import InstalledAppFlow
 import sys
 
-SENDER = "basnetnpritam@gmail.com"
+SENDER = ""
 
 def sendText(contactInfo):
     account_sid = passwords["twilio"]["account_sid"]
